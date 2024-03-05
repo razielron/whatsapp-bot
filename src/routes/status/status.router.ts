@@ -10,8 +10,6 @@ import { GetStatusSchema, StatusCreateSchema, StatusSchema } from '@/routes/stat
 
 export const statusRegistry = new OpenAPIRegistry();
 
-statusRegistry.register('Status', StatusSchema);
-
 export const statusRouter: Router = (() => {
     const router = express.Router();
 

@@ -10,8 +10,6 @@ import { ClientCreateSchema, ClientSchema, GetClientSchema } from '@/routes/clie
 
 export const clientRegistry = new OpenAPIRegistry();
 
-clientRegistry.register('Client', ClientSchema);
-
 export const clientRouter: Router = (() => {
     const router = express.Router();
 

@@ -8,8 +8,6 @@ import { BotRespondSchema } from '@/routes/bot/bot.type';
 
 export const botRegistry = new OpenAPIRegistry();
 
-botRegistry.register('Bot', BotRespondSchema);
-
 export const botRouter: Router = (() => {
     const router = express.Router();
 
