@@ -10,6 +10,8 @@ import { GetMessageSchema, MessageCreateSchema, MessageSchema } from '@/routes/m
 
 export const messageRegistry = new OpenAPIRegistry();
 
+messageRegistry.register('Message', MessageSchema);
+
 export const messageRouter: Router = (() => {
     const router = express.Router();
 
