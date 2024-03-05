@@ -10,8 +10,6 @@ import { ActionCreateSchema, ActionSchema, GetActionSchema } from '@/routes/acti
 
 export const actionRegistry = new OpenAPIRegistry();
 
-actionRegistry.register('Action', ActionSchema);
-
 export const actionRouter: Router = (() => {
     const router = express.Router();
 

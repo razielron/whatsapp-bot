@@ -14,8 +14,6 @@ import {
 
 export const responsePhraseRegistry = new OpenAPIRegistry();
 
-responsePhraseRegistry.register('ResponsePhrase', ResponsePhraseSchema);
-
 export const responsePhraseRouter: Router = (() => {
     const router = express.Router();
 

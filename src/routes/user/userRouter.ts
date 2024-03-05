@@ -9,8 +9,6 @@ import { userService } from '@/routes/user/userService';
 
 export const userRegistry = new OpenAPIRegistry();
 
-userRegistry.register('User', UserSchema);
-
 export const userRouter: Router = (() => {
     const router = express.Router();
 
