@@ -20,9 +20,12 @@ export const messageRouter: Router = (() => {
         responses: createApiResponse(z.array(MessageSchema), 'Success'),
     });
 
-    router.get('/', async (_req: Request, res: Response) => {
-        const serviceResponse = await messageService.getAll();
-        return res.status(HttpStatusCode.OK).send(serviceResponse);
+    router.get('/', async (_req: Request, res: Response, next) => {
+        try {
+            throw new Error('my error message');
+        } catch (err) {
+            next(err);
+        }
     });
 
     messageRegistry.registerPath({
