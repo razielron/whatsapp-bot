@@ -27,6 +27,20 @@ export const messageRouter: Router = (() => {
 
     messageRegistry.registerPath({
         method: 'get',
+        path: '/message/status/{status}',
+        tags: ['Message'],
+        request: { params: GetMessageSchema.shape.params },
+        responses: createApiResponse(MessageSchema, 'Success'),
+    });
+
+    router.get('status/:status', validateRequest(GetMessageSchema), async (req: Request, res: Response) => {
+        const status = req.params.status as string;
+        const serviceResponse = await messageService.getByStatus(status);
+        return res.status(HttpStatusCode.OK).send(serviceResponse);
+    });
+
+    messageRegistry.registerPath({
+        method: 'get',
         path: '/message/{id}',
         tags: ['Message'],
         request: { params: GetMessageSchema.shape.params },

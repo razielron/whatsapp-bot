@@ -1,27 +1,26 @@
 import { z } from 'zod';
 
 import { commonValidations } from '@/common/utils/commonValidation';
-import { Status } from '@/routes/status/status.entity';
 
 export type ClientModel = {
     id?: number;
     phoneNumber: string;
     name?: string;
-    status?: Status;
+    status: string;
 };
 
 export type CreateClientModel = {
     id?: number;
     phoneNumber: string;
     name?: string;
-    status?: { id: number };
+    status: string;
 };
 
 export const ClientSchema = z.object({
     id: z.number().optional(),
     phoneNumber: z.string(),
     name: z.string().optional(),
-    status: z.object({ id: commonValidations.id }).optional(),
+    status: z.string().optional(),
 });
 
 export const GetClientSchema = z.object({
@@ -33,5 +32,5 @@ export const GetClientSchema = z.object({
 export const ClientCreateSchema = z.object({
     phoneNumber: z.string(),
     name: z.string().optional(),
-    status: z.object({ id: commonValidations.id }).optional(),
+    status: z.string().optional(),
 });

@@ -1,5 +1,9 @@
 import { z } from 'zod';
 
+export type Identified = {
+    id: number;
+};
+
 export enum HttpStatusCode {
     OK = 200,
     Created = 201,

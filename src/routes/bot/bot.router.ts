@@ -28,16 +28,9 @@ export const botRouter: Router = (() => {
     });
 
     router.post('/respond', async (req: Request, res: Response) => {
-        try {
-            const { phoneNumber, clientMessage } = req.body;
-            const newBot = await botService.respond(phoneNumber, clientMessage);
-            return res.status(HttpStatusCode.OK).send(newBot);
-        } catch (error) {
-            console.error(error);
-            return res
-                .status(HttpStatusCode.InternalServerError)
-                .send({ bot: 'An error occurred while creating the bot.' });
-        }
+        const { phoneNumber, clientMessage } = req.body;
+        const newBot = await botService.handleClientSelection(phoneNumber, clientMessage);
+        return res.status(HttpStatusCode.OK).json(newBot);
     });
 
     return router;

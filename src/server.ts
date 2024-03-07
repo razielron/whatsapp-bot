@@ -1,3 +1,5 @@
+import 'express-async-errors';
+
 import cors from 'cors';
 import express, { Express } from 'express';
 import helmet from 'helmet';
@@ -11,12 +13,11 @@ import { env } from '@/common/utils/envConfig';
 import { healthCheckRouter } from '@/routes/healthCheck/healthCheckRouter';
 import { userRouter } from '@/routes/user/userRouter';
 
-import { actionRouter } from './routes/action/action.router';
 import { botRouter } from './routes/bot/bot.router';
 import { clientRouter } from './routes/client/client.router';
 import { messageRouter } from './routes/message/message.router';
-import { responsePhraseRouter } from './routes/responsePhrase/responsePhrase.router';
-import { statusRouter } from './routes/status/status.router';
+import { orderRouter } from './routes/order/order.router';
+import { responseSelectionRouter } from './routes/responseSelection/responseSelection.router';
 
 const logger = pino({ name: 'server start' });
 const app: Express = express();
@@ -37,14 +38,19 @@ app.use(requestLogger());
 app.use('/health-check', healthCheckRouter);
 app.use('/user', userRouter);
 app.use('/message', messageRouter);
-app.use('/status', statusRouter);
 app.use('/client', clientRouter);
-app.use('/action', actionRouter);
-app.use('/responsePhrase', responsePhraseRouter);
+app.use('/responsePhrase', responseSelectionRouter);
+app.use('/order', orderRouter);
 app.use('/bot', botRouter);
 
 // Swagger UI
 app.use(openAPIRouter);
+
+app.use((err, req, res, next) => {
+    console.error(err);
+    console.log(req, next);
+    res.status(400).send(`Something broke! ${err}`);
+});
 
 // Error handlers
 app.use(errorHandler());
