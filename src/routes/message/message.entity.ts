@@ -14,6 +14,9 @@ export class Message extends BaseEntity {
     id: number;
 
     @Column({ type: 'varchar' })
+    status!: string;
+
+    @Column({ type: 'varchar' })
     text!: string;
 
     @CreateDateColumn({ select: false })

@@ -6,6 +6,8 @@ const createOrUpdate = (message: MessageModel) => messageRepository.save(message
 
 const getById = (id: number) => messageRepository.findById(id);
 
+const getByStatus = (status: string) => messageRepository.findByStatus(status);
+
 const getAll = () => messageRepository.findAll();
 
 const deleteUser = async (id: number) => {
@@ -19,6 +21,7 @@ const deleteUser = async (id: number) => {
 export default {
     createOrUpdate,
     getById,
+    getByStatus,
     getAll,
     deleteUser,
 };

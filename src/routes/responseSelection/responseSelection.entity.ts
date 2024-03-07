@@ -9,15 +9,15 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Status extends BaseEntity {
+export class ResponseSelection extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({ type: 'varchar' })
-    name!: string;
+    displayName!: string;
 
-    @Column({ type: 'boolean', default: false })
-    isFinal: boolean = false;
+    @Column({ type: 'varchar' })
+    value!: string;
 
     @CreateDateColumn({ select: false })
     createDate: Date;

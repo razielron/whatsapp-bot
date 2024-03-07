@@ -4,13 +4,9 @@ import {
     CreateDateColumn,
     DeleteDateColumn,
     Entity,
-    JoinColumn,
-    ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
-
-import { Status } from '@/routes/status/status.entity';
 
 @Entity()
 export class Client extends BaseEntity {
@@ -23,9 +19,8 @@ export class Client extends BaseEntity {
     @Column({ type: 'varchar', nullable: true })
     name?: string;
 
-    @JoinColumn()
-    @ManyToOne(() => Status, { cascade: true })
-    status?: Status;
+    @Column({ type: 'varchar' })
+    status!: string;
 
     @CreateDateColumn({ select: false })
     createDate: Date;

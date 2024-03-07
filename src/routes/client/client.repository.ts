@@ -4,15 +4,11 @@ import { Client } from './client.entity';
 
 const save = (client: DeepPartial<Client>) => Client.save(client);
 
-const findById = (id: number) => Client.find({ where: { id }, relations: { status: true } });
+const findById = (id: number) => Client.find({ where: { id } });
 
-const findByPhoneNumber = (phoneNumber: string) =>
-    Client.findOne({
-        where: { phoneNumber },
-        relations: { status: true },
-    });
+const findByPhoneNumber = (phoneNumber: string) => Client.findOne({ where: { phoneNumber } });
 
-const findAll = () => Client.find({ relations: { status: true } });
+const findAll = () => Client.find();
 
 const update = (clientId: number, clientData: Client) => Client.update(clientId, clientData);
 

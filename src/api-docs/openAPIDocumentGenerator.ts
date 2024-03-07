@@ -1,12 +1,11 @@
 import { OpenApiGeneratorV3, OpenAPIRegistry } from '@asteasolutions/zod-to-openapi';
 
-import { actionRegistry } from '@/routes/action/action.router';
 import { botRegistry } from '@/routes/bot/bot.router';
 import { clientRegistry } from '@/routes/client/client.router';
 import { healthCheckRegistry } from '@/routes/healthCheck/healthCheckRouter';
 import { messageRegistry } from '@/routes/message/message.router';
-import { responsePhraseRegistry } from '@/routes/responsePhrase/responsePhrase.router';
-import { statusRegistry } from '@/routes/status/status.router';
+import { orderRegistry } from '@/routes/order/order.router';
+import { responseSelectionRegistry } from '@/routes/responseSelection/responseSelection.router';
 import { userRegistry } from '@/routes/user/userRouter';
 
 export function generateOpenAPIDocument() {
@@ -14,11 +13,10 @@ export function generateOpenAPIDocument() {
         healthCheckRegistry,
         userRegistry,
         messageRegistry,
-        statusRegistry,
         clientRegistry,
-        actionRegistry,
-        responsePhraseRegistry,
+        responseSelectionRegistry,
         botRegistry,
+        orderRegistry,
     ]);
     const generator = new OpenApiGeneratorV3(registry.definitions);
 
